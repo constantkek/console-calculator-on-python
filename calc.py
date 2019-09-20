@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, math
 class Operator:
     def set(self):
         self.operator = input()
@@ -19,6 +19,7 @@ class MyCalc:
             print("\ttype \"/\" if you want to divide some numbers.")
             print("\ttype \"%\" if you want to find mod.")
             print("\ttype \"his\" to see logs")
+            print("\ttype \"sqrt\" to find square root")
 
     def calculate(self):
         self.start()
@@ -51,6 +52,10 @@ class MyCalc:
         elif sign.get() == 'his':
             his = History()
             print(his.getHistory())
+        elif sign.get() == 'sqrt':
+            x = int(input('Enter the number:'))
+            self.res = 'sqrt({}) = {}'.format(x, math.sqrt(x))
+            print(self.res)
         else:
             print('Invalid enter')
             fin = input('Would you like to exit? [y/n]\n')
