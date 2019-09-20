@@ -83,3 +83,4 @@ class Logger:
 calc = MyCalc()
 calc.calculate()
 
+print("test")

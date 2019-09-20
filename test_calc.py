@@ -37,3 +37,5 @@ if __name__ == '__main__':
 # ctrl + shift + p      ->      shows all comands
 # ctrl + n              ->      creates new file
 # ctrl + o              ->      opens file
+
+print("test")
