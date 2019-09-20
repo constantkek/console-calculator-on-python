@@ -7,26 +7,35 @@ class Operator:
         return self.operator
 
 class MyCalc:
-    num1 = 0
-    num2 = 0
+    nums = []
+
+    def __init__(self):
+            print("Hello, I am console calculator!")
+            print("Here is what you can do with me:")
+            print("\ttype \"+\" if you want to sum 2 numbers.")
+            print("\ttype \"-\" if you want to subtract 2 numbers.")
+            print("\ttype \"*\" if you want to multiply 2 numbers.")
+            print("\ttype \"/\" if you want to divide 2 numbers.")
+            print("\ttype \"%\" if you want to find mod.")
+
     def calculate(self):
         sign = Operator()
         sign.set()
 
         if (sign.get() == '+') or (sign.get() == '-') or (sign.get() == '*') or (sign.get() == '/'):
-            self.num1, self.num2 = self.askForInput()
+            self.askForInput()
             if sign.get() == '+':
-                print(self.add(self.num1, self.num2))
-                self.askForLog(self.add(self.num1, self.num2))
+                print(self.add(self.nums))
+                self.askForLog(self.add(self.nums))
             elif sign.get() == '-':
-                print(self.sub(self.num1, self.num2))
-                self.askForLog(self.sub(self.num1, self.num2))
+                print(self.sub(self.nums))
+                self.askForLog(self.sub(self.nums))
             elif sign.get() == '*':
-                print(self.mult(self.num1, self.num2))
-                self.askForLog(self.mult(self.num1, self.num2))
+                print(self.mult(self.nums))
+                self.askForLog(self.mult(self.nums))
             elif sign.get() == '/':
-                print(self.divide(self.num1, self.num2))
-                self.askForLog(self.divide(self.num1, self.num2))
+                print(self.divide(self.nums))
+                self.askForLog(self.divide(self.nums))
         else:
             print('Invalid enter')
             fin = input('Would you like to exit? [y/n]\n')
@@ -35,22 +44,50 @@ class MyCalc:
 
         self.isCalcAgain() 
         
-    def add(self, number1, number2):
-        return '{} + {} = {}'.format(number1, number2, number1 + number2)
+    def add(self, nums):
+        resultString = ""
+        sum = 0
+        for num in nums:
+            resultString += '{} + '.format(num)
+            sum += num
+        resultString = resultString[0:len(resultString) - 3]
+        return '{} = {}'.format(resultString, sum)
     
-    def sub(self, number1, number2):
-        return '{} - {} = {}'.format(number1, number2, number1 - number2)
+    def sub(self, nums):
+        resultString = str(nums[0]) + ' - '
+        sub = nums[0]
+        for num in nums[1:len(nums)]:
+            resultString += '{} - '.format(num)
+            sub -= num
+        resultString = resultString[0:len(resultString) - 3]
+        return '{} = {}'.format(resultString, sub)
 
-    def mult(self, number1, number2):
-        return '{} * {} = {}'.format(number1, number2, number1 * number2)
+    def mult(self, nums):
+        resultString = ""
+        mult = 1
+        for num in nums:
+            resultString += '{} * '.format(num)
+            mult *= num
+        resultString = resultString[0:len(resultString) - 3]
+        return '{} = {}'.format(resultString, mult)
 
-    def divide(self, number1, number2):
-        return '{} / {} = {}'.format(number1, number2, number1 / number2)
-    
+    def divide(self, nums):
+        resultString = str(nums[0]) + ' / '
+        div = nums[0]
+        for num in nums[1:len(nums)]:
+            resultString += '{} / '.format(num)
+            div /= num
+        resultString = resultString[0:len(resultString) - 3]
+        return '{} = {}'.format(resultString, div)
+
     def askForInput(self):
-        num1 = int(input('Enter the first number: '))
-        num2 = int(input('Enter the second number: '))
-        return num1, num2
+        print('Enter the number. Type \'q\' to finish inputing.')
+        while True:
+            _input = input()
+            if _input == 'q':
+                break
+            self.nums.append(int(_input))
+        return
     
     def isCalcAgain(self):
         flag = input('Would you like to calculate again? [y/n]\n')
