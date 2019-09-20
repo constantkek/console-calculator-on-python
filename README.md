@@ -17,4 +17,16 @@ The program stores in calc.py file.
 ### Class Logger:
 * __init__() - sets string to store
 * askUser() - asks your preference to store value
-* saveInFile() - appends the string to log.txt file and returns first line for testing
+* saveInFile(string) - appends the string to log.txt file and returns first line for testing
+
+### Class MyCalc:
+* start() - outputs welcome message in terminal
+* calculate() - main function. Makes a calculations. Peep-beep-boop-peep-peep.
+* add(nums) - adds all numbers and returns final string
+* sub(nums) - subtract all numbers from nums[0]
+* mult(nums) - multiplies all numbers and returns final string.
+* divide(nums) - divide all numbers from nums[0]
+* mod(nums) - calculate the modification of numbers
+* askForInput() - asks you to type numbers, checks input to be numerical
+* isCalcAgain() - asks you to calculate again
+* askForLog() - asks you whether you want to store calculation
