@@ -9,6 +9,16 @@ class Operator:
 class MyCalc:
     num1 = 0
     num2 = 0
+
+    def __init__(self):
+            print("Hello, I am console calculator!")
+            print("Here is what you can do with me:")
+            print("\ttype \"+\" if you want to sum 2 numbers.")
+            print("\ttype \"-\" if you want to subtract 2 numbers.")
+            print("\ttype \"*\" if you want to multiply 2 numbers.")
+            print("\ttype \"/\" if you want to divide 2 numbers.")
+            print("\ttype \"%\" if you want to find mod.")
+
     def calculate(self):
         sign = Operator()
         sign.set()
