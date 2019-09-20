@@ -1,84 +1,108 @@
 import sys, os
 class Operator:
     def set(self):
-        self.operator = input('Please, type the operation (+, -, *, /)\n')
+        self.operator = input()
 
     def get(self):
         return self.operator
 
 class MyCalc:
     nums = []
+    res = ''
 
-    def __init__(self):
+    def start(self):
             print("Hello, I am console calculator!")
             print("Here is what you can do with me:")
-            print("\ttype \"+\" if you want to sum 2 numbers.")
-            print("\ttype \"-\" if you want to subtract 2 numbers.")
-            print("\ttype \"*\" if you want to multiply 2 numbers.")
-            print("\ttype \"/\" if you want to divide 2 numbers.")
+            print("\ttype \"+\" if you want to sum some numbers.")
+            print("\ttype \"-\" if you want to subtract some numbers.")
+            print("\ttype \"*\" if you want to multiply some numbers.")
+            print("\ttype \"/\" if you want to divide some numbers.")
             print("\ttype \"%\" if you want to find mod.")
+            print("\ttype \"his\" to see logs")
 
     def calculate(self):
+        self.start()
+        self.res = ''
+        self.nums = []
+
         sign = Operator()
         sign.set()
 
-        if (sign.get() == '+') or (sign.get() == '-') or (sign.get() == '*') or (sign.get() == '/'):
+        if sign.get() == '+':
             self.askForInput()
-            if sign.get() == '+':
-                print(self.add(self.nums))
-                self.askForLog(self.add(self.nums))
-            elif sign.get() == '-':
-                print(self.sub(self.nums))
-                self.askForLog(self.sub(self.nums))
-            elif sign.get() == '*':
-                print(self.mult(self.nums))
-                self.askForLog(self.mult(self.nums))
-            elif sign.get() == '/':
-                print(self.divide(self.nums))
-                self.askForLog(self.divide(self.nums))
+            self.res = self.add(self.nums)
+            print(self.res)
+        elif sign.get() == '-':
+            self.askForInput()
+            self.res = self.sub(self.nums)
+            print(self.res)
+        elif sign.get() == '*':
+            self.askForInput()
+            self.res = self.mult(self.nums)
+            print(self.res)
+        elif sign.get() == '/':
+            self.askForInput()
+            self.res = self.divide(self.nums)
+            print(self.res)
+        elif sign.get() == '%':
+            self.askForInput()
+            self.res = self.mod(self.nums)
+            print(self.res)
+        elif sign.get() == 'his':
+            his = History()
+            print(his.getHistory())
         else:
             print('Invalid enter')
             fin = input('Would you like to exit? [y/n]\n')
             if fin == 'y':
                 sys.exit()
 
+        self.askForLog()
         self.isCalcAgain() 
         
     def add(self, nums):
-        resultString = ""
         sum = 0
         for num in nums:
-            resultString += '{} + '.format(num)
+            self.res += '{} + '.format(num)
             sum += num
-        resultString = resultString[0:len(resultString) - 3]
-        return '{} = {}'.format(resultString, sum)
+        self.res = self.res[0:len(self.res) - 3]
+        return '{} = {}'.format(self.res, sum)
     
     def sub(self, nums):
-        resultString = str(nums[0]) + ' - '
+        self.res = str(nums[0]) + ' - '
         sub = nums[0]
         for num in nums[1:len(nums)]:
-            resultString += '{} - '.format(num)
+            self.res += '{} - '.format(num)
             sub -= num
-        resultString = resultString[0:len(resultString) - 3]
-        return '{} = {}'.format(resultString, sub)
+        self.res = self.res[0:len(self.res) - 3]
+        return '{} = {}'.format(self.res, sub)
 
     def mult(self, nums):
-        resultString = ""
+        self.res = ''
         mult = 1
         for num in nums:
-            resultString += '{} * '.format(num)
+            self.res += '{} * '.format(num)
             mult *= num
-        resultString = resultString[0:len(resultString) - 3]
-        return '{} = {}'.format(resultString, mult)
+        self.res = self.res[0:len(self.res) - 3]
+        return '{} = {}'.format(self.res, mult)
 
     def divide(self, nums):
-        resultString = str(nums[0]) + ' / '
+        self.res = str(nums[0]) + ' / '
         div = nums[0]
         for num in nums[1:len(nums)]:
-            resultString += '{} / '.format(num)
+            self.res += '{} / '.format(num)
             div /= num
-        resultString = resultString[0:len(resultString) - 3]
-        return '{} = {}'.format(resultString, div)
+        self.res = self.res[0:len(self.res) - 3]
+        return '{} = {}'.format(self.res, div)
+
+    def mod(self, nums):
+        self.res = str(nums[0]) + ' % '
+        mod = nums[0]
+        for num in nums[1:len(nums)]:
+            self.res += '{} % '.format(num)
+            mod %= num
+        self.res = self.res[0:len(self.res) - 3]
+        return '{} = {}'.format(self.res, mod)
 
     def askForInput(self):
         print('Enter the number. Type \'q\' to finish inputing.')
@@ -86,7 +110,10 @@ class MyCalc:
             _input = input()
             if _input == 'q':
                 break
-            self.nums.append(int(_input))
+            try:
+                self.nums.append(int(_input))
+            except:
+                print('Wrong input. Numbers only.')
         return
     
     def isCalcAgain(self):
@@ -96,8 +123,10 @@ class MyCalc:
         else:
             print('Bye!')
 
-    def askForLog(self, res):
-        log = Logger(res)
+    def askForLog(self):
+        if self.res == '':
+            return
+        log = Logger(self.res)
         log.askUser('Would you like to save the result into the log.txt? [y/n]\n')
 
 class Logger:
@@ -116,6 +145,15 @@ class Logger:
         append.write(self.res + '\n')
         append.close()
         return reader.readline()
+
+class History:
+    def getHistory(self):
+        reader = open('log.txt', 'r')
+        res = reader.read()
+        reader.close()
+        return res
+
+
 
 calc = MyCalc()
 calc.calculate()
