@@ -20,6 +20,8 @@ class MyCalc:
             print("\ttype \"%\" if you want to find mod.")
             print("\ttype \"his\" to see logs")
             print("\ttype \"sqrt\" to find square root")
+            print("\ttype \"sin\" to find sinus")
+            print("\ttype \"cos\" to find cosinus")
 
     def calculate(self):
         self.start()
@@ -53,8 +55,16 @@ class MyCalc:
             his = History()
             print(his.getHistory())
         elif sign.get() == 'sqrt':
-            x = int(input('Enter the number:'))
+            x = float(input('Enter the number:'))
             self.res = 'sqrt({}) = {}'.format(x, math.sqrt(x))
+            print(self.res)
+        elif sign.get() == 'sin':
+            x = float(input('Enter the number:'))
+            self.res = 'sin({}) = {}'.format(x, math.sin(x))
+            print(self.res)
+        elif sign.get() == 'cos':
+            x = float(input('Enter the number:'))
+            self.res = 'cos({}) = {}'.format(x, math.cos(x))
             print(self.res)
         else:
             print('Invalid enter')
