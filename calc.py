@@ -168,9 +168,5 @@ class History:
         reader.close()
         return res
 
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
 calc = MyCalc()
 calc.calculate()
