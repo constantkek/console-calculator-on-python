@@ -1,0 +1,7 @@
+[submodule "console-calculator-on-python"]
+	path = console-calculator-on-python
+	url = https://github.com/constantkek/console-calculator-on-python.git
+	branch = master
+[submodule "calc"]
+	path = calc
+	url = https://github.com/constantkek/console-calculator-on-python.git

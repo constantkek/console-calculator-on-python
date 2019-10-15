@@ -5,7 +5,7 @@ class Operator:
 
     def get(self):
         return self.operator
-
+    
 class MyCalc:
     nums = []
     res = ''
@@ -168,6 +168,9 @@ class History:
         reader.close()
         return res
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 calc = MyCalc()
 calc.calculate()

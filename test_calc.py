@@ -4,19 +4,19 @@ import calc
 class TestCalc(unittest.TestCase):
 
     def test_add(self):
-        res = calc.MyCalc.add(self, 7, 6)
+        res = calc.MyCalc.add(self, [7, 6])
         self.assertEqual(res, '7 + 6 = 13')
 
     def test_sub(self):
-        res = calc.MyCalc.sub(self, 9, 2)
+        res = calc.MyCalc.sub(self, [9, 2])
         self.assertEqual(res, '9 - 2 = 7')
     
     def test_mult(self):
-        res = calc.MyCalc.mult(self, 14, 5)
+        res = calc.MyCalc.mult(self, [14, 5])
         self.assertEqual(res, '14 * 5 = 70')
     
     def test_divide(self):
-        res = calc.MyCalc.divide(self, 24, 6)
+        res = calc.MyCalc.divide(self, [24, 6])
         self.assertEqual(res, '24 / 6 = 4.0')
 
     def test_openFile(self):
@@ -37,5 +37,4 @@ if __name__ == '__main__':
 # ctrl + shift + p      ->      shows all comands
 # ctrl + n              ->      creates new file
 # ctrl + o              ->      opens file
-
-print("test")
+# ctrl + o              ->      opens file
